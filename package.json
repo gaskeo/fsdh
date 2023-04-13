@@ -1,0 +1,49 @@
+{
+  "name": "fsd-helper",
+  "version": "0.0.1",
+  "description": "FSD helper",
+  "engines": {
+    "node": ">=14.16"
+  },
+  "exports": "./lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "dev": "npm run build && node lib/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaskeo/fsd-helper.git"
+  },
+  "keywords": [
+    "fsd"
+  ],
+  "author": "gaskeo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaskeo/fsd-helper/issues"
+  },
+  "homepage": "https://github.com/gaskeo/fsd-helper#readme",
+  "dependencies": {
+    "ansi-escapes": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.21.3",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-import": "^2.27.5",
+    "typescript": "^5.0.4"
+  }
+}
