@@ -1,5 +1,6 @@
 import {checkbox, vectorToValues} from "./ui/checkbox.js";
 import * as readline from "readline";
+import * as fs from "fs";
 
 const dirs = [
     "pages",
@@ -42,16 +43,54 @@ async function selectDir() {
     });
 }
 
+interface CreateDir {
+    dir: string;
+}
+
+function createDir({dir}: CreateDir) {
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, {recursive: true});
+        return true;
+    }
+    return false;
+}
+
+interface CreateDirectories {
+    dirs: string[];
+}
+
+async function createDirectories({dirs}: CreateDirectories) {
+    return new Promise<{dir: string, created: boolean}[]>((resolve, reject) => {
+            const data = dirs.map(dir => {
+                return {
+                    dir: dir, created: createDir({dir})
+                };
+            });
+            resolve(data);
+        }
+    );
+}
+
 async function init() {
     const dir = await selectDir();
-    console.log(`\n✅  Directory selected: ${dir}\n`);
+    console.log(`✅  Directory selected: ${dir}\n`);
     const selectedDirs = await checkbox({
         items: dirs,
         ctrlCErrorMessage: ":(",
         defaultSelected: true,
         title: "➕  Select necessary directories"
     });
-    console.log(vectorToValues({vector: selectedDirs, data: dirs}));
+    const statuses = await createDirectories(
+        {
+            dirs: vectorToValues({
+                    vector: selectedDirs, data: dirs
+                }
+            ).map(folder => `${dir}/${folder}`)
+        }
+    );
+    const createdDirs = statuses.filter(status => status.created);
+    console.log(`✅  Directory created:\n ${createdDirs.map(d => "\t" + d.dir).join("\n")}\n`);
+
 }
 
 main().catch((reason) => {
