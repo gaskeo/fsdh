@@ -11,20 +11,32 @@ const dirs = [
     "shared"
 ];
 
+
+async function version() {
+    const packagePath = process.argv[1].replaceAll("\\", "/")
+            .replaceAll("entry.js", "")
+            .replaceAll("index.ts", "")
+        + "/../package.json";
+    const packageRaw = fs.readFileSync(packagePath).toString();
+    const packageJson = JSON.parse(packageRaw);
+    console.log(`version: ${packageJson["version"]}`);
+}
+
 async function main() {
     const args = process.argv;
+    console.log(args);
     if (args.length <= 2) {
         return;
     }
 
     const command = args[2];
-    if (command === "init") {
-        return init();
-    }
+
+    if (["v", "V", "version", "Version", "--version", "-v", "-V"].includes(command)) return version();
+    if (command === "init") return init();
 }
 
 async function selectDir() {
-    return new Promise((resolve, reject) => {
+    return new Promise<string>((resolve) => {
         function handleDir(dir: string) {
             if (dir.trim() === "") {
 
@@ -60,7 +72,7 @@ interface CreateDirectories {
 }
 
 async function createDirectories({dirs}: CreateDirectories) {
-    return new Promise<{dir: string, created: boolean}[]>((resolve, reject) => {
+    return new Promise<{ dir: string, created: boolean }[]>((resolve) => {
             const data = dirs.map(dir => {
                 return {
                     dir: dir, created: createDir({dir})
