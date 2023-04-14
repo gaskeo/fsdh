@@ -23,7 +23,7 @@ async function checkbox({
                             ctrlCErrorMessage
                         }: Checkbox) {
     return new Promise<number[]>((resolve, reject) => {
-        const listener = (buffer: Buffer) => buttonHandler(buffer.toString())
+        const listener = (buffer: Buffer) => buttonHandler(buffer.toString());
             function buttonHandler(button: string) {
                 if (button === exit) {
                     after();
