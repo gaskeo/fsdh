@@ -28,22 +28,20 @@ async function checkbox({
                     return reject(new Error(ctrlCErrorMessage));
                 }
 
-                if ([upButton, "w"].includes(button) && currentPosition !== 0) {
-                    currentPosition--;
-                    clean();
-                    render();
+                if ([upButton, "w"].includes(button)) {
+                    if (currentPosition > 0) {
+                        currentPosition--;
+                    } else return;
                 } else if ([downButton, "s"].includes(button) && currentPosition !== items.length - 1) {
                     currentPosition++;
-                    clean();
-                    render();
                 } else if (button === space) {
                     selectedItems[currentPosition] = 1 - selectedItems[currentPosition];
-                    clean();
-                    render();
                 } else if (button === enter) {
                     after();
                     resolve(selectedItems);
                 }
+                clean();
+                render();
             }
 
             function setSign(index: number, item: string) {
@@ -53,20 +51,23 @@ async function checkbox({
             }
 
             function render() {
-                process.stdout.write((items.map((item, index) => setSign(index, item))).join("\n"));
+                process.stdout.write((
+                    items.map((item, index) => setSign(index, item))).join("\n") + "\n");
             }
 
             function clean() {
-                process.stdout.write(ansiEscapes.eraseLines(items.length));
+                process.stdout.write(ansiEscapes.eraseLines(items.length + 1));
             }
 
             function prepare() {
+                process.stdin.setRawMode(true);
+                process.stdin.resume();
+
                 title && process.stdout.write(title + "\n");
                 process.stdout.write(`${whiteAndGreen("↑ or w")} up\t` +
                     `${whiteAndGreen("↓ or s")} down\t` +
                     `${whiteAndGreen("space")} toggle\t` +
                     `${whiteAndGreen("enter")} apply\n`);
-                process.stdin.setRawMode(true).resume();
                 process.stdout.write(ansiEscapes.cursorHide);
                 process.stdin.on("data", (buffer) => buttonHandler(buffer.toString())
                 );

@@ -1,4 +1,4 @@
-const dirs = [
+const fsdFolders = [
     "pages",
     "layouts",
     "widgets",
@@ -7,4 +7,4 @@ const dirs = [
     "shared"
 ];
 
-export {dirs};
+export {fsdFolders};
