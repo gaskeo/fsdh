@@ -1,15 +1,4 @@
-import * as fs from "fs";
-import {init} from "./commands/index.js";
-
-async function version() {
-    const packagePath = process.argv[1].replaceAll("\\", "/")
-            .replaceAll("entry.js", "")
-            .replaceAll("index.ts", "")
-        + "/../package.json";
-    const packageRaw = fs.readFileSync(packagePath).toString();
-    const packageJson = JSON.parse(packageRaw);
-    console.log(`version: ${packageJson["version"]}`);
-}
+import {init, version} from "./commands/index.js";
 
 async function main() {
     const args = process.argv;

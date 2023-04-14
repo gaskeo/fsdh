@@ -11,4 +11,4 @@ function vectorToValues<T>({vector, data}: VectorToValues<T>): T[] {
     return data.filter((_, index) => vector[index]);
 }
 
-export {vectorToValues}
+export {vectorToValues};
