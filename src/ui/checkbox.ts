@@ -31,11 +31,11 @@ async function checkbox({
                     return reject(new Error(ctrlCErrorMessage));
                 }
 
-                if (button === upButton && currentPosition !== 0) {
+                if ([upButton, "w"].includes(button) && currentPosition !== 0) {
                     currentPosition--;
                     clean();
                     render();
-                } else if (button === downButton && currentPosition !== items.length - 1) {
+                } else if ([downButton, "s"].includes(button) && currentPosition !== items.length - 1) {
                     currentPosition++;
                     clean();
                     render();
@@ -50,11 +50,9 @@ async function checkbox({
             }
 
             function setSign(index: number, item: string) {
-                if (index === currentPosition) {
-                    if (selectedItems[index]) return `☑ \x1b[4m${item}\x1b[0m`;
-                    return `☐ \x1b[4m${item}\x1b[0m`;
-                } else if (selectedItems[index]) return `☑ ${item}`;
-                return `☐ ${item}`;
+                let output = selectedItems[index] ? "☑ " : "☐ ";
+                output += index === currentPosition ? `\x1b[4m${item}\x1b[0m` : item;
+                return output;
             }
 
             function render() {
@@ -66,7 +64,15 @@ async function checkbox({
             }
 
             function prepare() {
+                function whiteAndGreen(data: string) {
+                    return `\x1b[97m\x1b[42m${data}\x1b[0m`;
+                }
+
                 title && process.stdout.write(title + "\n");
+                process.stdout.write(`${whiteAndGreen("↑ or w")} up\t` +
+                    `${whiteAndGreen("↓ or s")} down\t` +
+                    `${whiteAndGreen("space")} toggle\t` +
+                    `${whiteAndGreen("enter")} apply\n`);
                 process.stdin.setRawMode(true).resume();
                 process.stdout.write(ansiEscapes.cursorHide);
                 process.stdin.on("data", (buffer) => buttonHandler(buffer.toString())
