@@ -14,13 +14,21 @@ interface Checkbox {
     items: string[];
     defaultSelected?: boolean | number[];
     defaultPosition?: number;
+    ctrlCErrorMessage?: string;
+    title?: string;
 }
 
-async function checkbox({items, defaultSelected, defaultPosition}: Checkbox) {
-    return new Promise((resolve, reject) => {
+async function checkbox({
+                            title,
+                            items,
+                            defaultSelected,
+                            defaultPosition,
+                            ctrlCErrorMessage
+                        }: Checkbox) {
+    return new Promise<number[]>((resolve, reject) => {
             function buttonHandler(button: string) {
                 if (button === exit) {
-                    return reject(new Error('User abort'));
+                    return reject(new Error(ctrlCErrorMessage));
                 }
 
                 if (button === upButton && currentPosition !== 0) {
@@ -43,10 +51,10 @@ async function checkbox({items, defaultSelected, defaultPosition}: Checkbox) {
 
             function setSign(index: number) {
                 if (index === currentPosition) {
-                    if (selectedItems[index]) return greenBackground("[X]");
-                    return greenBackground("[ ]");
-                } else if (selectedItems[index]) return "[X]";
-                return "[ ]";
+                    if (selectedItems[index]) return "☑  ";
+                    return "☐  ";
+                } else if (selectedItems[index]) return "☑ ";
+                return "☐ ";
             }
 
             function render() {
@@ -58,6 +66,7 @@ async function checkbox({items, defaultSelected, defaultPosition}: Checkbox) {
             }
 
             function prepare() {
+                title && process.stdout.write(title + "\n");
                 process.stdin.setRawMode(true).resume();
                 process.stdout.write(ansiEscapes.cursorHide);
                 process.stdin.on("data", (buffer) => buttonHandler(buffer.toString())
@@ -86,4 +95,17 @@ async function checkbox({items, defaultSelected, defaultPosition}: Checkbox) {
     );
 }
 
-export {checkbox};
+interface VectorToValues<T> {
+    vector: number[];
+    data: T[];
+}
+
+function vectorToValues<T>({vector, data}: VectorToValues<T>): T[] {
+    if (vector.length !== data.length) {
+        return [];
+    }
+
+    return data.filter((_, index) => vector[index]);
+}
+
+export {checkbox, vectorToValues};
