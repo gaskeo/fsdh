@@ -49,16 +49,16 @@ async function checkbox({
                 }
             }
 
-            function setSign(index: number) {
+            function setSign(index: number, item: string) {
                 if (index === currentPosition) {
-                    if (selectedItems[index]) return "☑  ";
-                    return "☐  ";
-                } else if (selectedItems[index]) return "☑ ";
-                return "☐ ";
+                    if (selectedItems[index]) return `☑ \x1b[4m${item}\x1b[0m`;
+                    return `☐ \x1b[4m${item}\x1b[0m`;
+                } else if (selectedItems[index]) return `☑ ${item}`;
+                return `☐ ${item}`;
             }
 
             function render() {
-                process.stdout.write((items.map((item, index) => `${setSign(index)} ${item}`)).join("\n"));
+                process.stdout.write((items.map((item, index) => setSign(index, item))).join("\n"));
             }
 
             function clean() {
