@@ -1,22 +1,17 @@
-import readline from "readline";
+import {input} from "../../ui/input/input.js";
 
 async function selectDir() {
     return new Promise<string>((resolve) => {
-        function handleDir(dir: string) {
-            if (dir.trim() === "") {
+        const path = process.cwd().replaceAll("\\", "/");
+        const dir = path.split("/")[path.split("/").length - 1];
+
+        input({title: `📁 Select directory (${dir})`}).then(selectedDir => {
+            if (selectedDir.trim() === "") {
 
                 resolve(".");
             }
-            resolve(dir);
-        }
-
-        const path = process.cwd().replaceAll("\\", "/");
-        const dir = path.split("/")[path.split("/").length - 1];
-        const handle = readline.createInterface({input: process.stdin, output: process.stdout});
-        handle.question(`📁 Select directory (${dir}): `, answer => {
-            handleDir(answer);
+            resolve(selectedDir);
         });
-        // prepare();
     });
 }
 
