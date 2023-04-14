@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
 //    "module": "commonjs",
     "declaration": true,
     "outDir": "./lib",
     "strict": true,
-    "moduleResolution": "node16"
+    "moduleResolution": "node16",
+    "esModuleInterop": true,
+    "module": "es6",
+    "lib": ["DOM", "ES2021"]
   },
   "module": "node16",
   "moduleResolution": "node16",
   "moduleDetection": "force",
-  "target": "ES2020",
+  "target": "ES2021",
   "lib": [
     "DOM",
     "DOM.Iterable",
-    "ES2020"
+    "ES2021"
   ],
   "allowSyntheticDefaultImports": true,
   "resolveJsonModule": false,
