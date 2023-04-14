@@ -27,6 +27,7 @@ async function radio({
 
             function buttonHandler(button: string) {
                 if (button === exit) {
+                    after();
                     return reject(new Error(ctrlCErrorMessage));
                 }
 
@@ -77,7 +78,7 @@ async function radio({
 
             function after() {
                 process.stdin.setRawMode(false).resume();
-                process.stdout.write("\n" + ansiEscapes.cursorShow);
+                process.stdout.write(ansiEscapes.cursorShow);
                 process.stdin.off("data", listener);
             }
 

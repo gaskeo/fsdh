@@ -23,8 +23,10 @@ async function checkbox({
                             ctrlCErrorMessage
                         }: Checkbox) {
     return new Promise<number[]>((resolve, reject) => {
+        const listener = (buffer: Buffer) => buttonHandler(buffer.toString())
             function buttonHandler(button: string) {
                 if (button === exit) {
+                    after();
                     return reject(new Error(ctrlCErrorMessage));
                 }
 
@@ -39,6 +41,7 @@ async function checkbox({
                 } else if (button === enter) {
                     after();
                     resolve(selectedItems);
+                    return;
                 }
                 clean();
                 render();
@@ -69,13 +72,13 @@ async function checkbox({
                     `${whiteAndGreen("space")} toggle\t` +
                     `${whiteAndGreen("enter")} apply\n`);
                 process.stdout.write(ansiEscapes.cursorHide);
-                process.stdin.on("data", (buffer) => buttonHandler(buffer.toString())
-                );
+                process.stdin.on("data", listener);
             }
 
             function after() {
+                process.stdout.write(ansiEscapes.cursorShow);
                 process.stdin.setRawMode(false).resume();
-                process.stdout.write("\n" + ansiEscapes.cursorShow);
+                process.stdin.off("data", listener);
             }
 
             let currentPosition = defaultPosition || 0;
