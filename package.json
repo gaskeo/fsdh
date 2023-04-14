@@ -1,6 +1,6 @@
 {
   "name": "fsdh",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "FSD helper",
   "engines": {
     "node": ">=14.16"
@@ -14,7 +14,8 @@
   "files": [
     "package.json",
     "lib",
-    "bin"
+    "bin",
+    "assets"
   ],
   "scripts": {
     "test": "",
