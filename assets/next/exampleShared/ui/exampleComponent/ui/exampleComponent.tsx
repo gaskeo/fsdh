@@ -9,4 +9,4 @@ const ExampleComponent = ({example}: ExampleComponentProps) => {
 };
 
 export default ExampleComponent;
-export {ExampleComponentProps}
+export {ExampleComponentProps};
