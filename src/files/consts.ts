@@ -1,5 +1,3 @@
-import readline from "readline";
-
 const dirs = [
     "pages",
     "layouts",
