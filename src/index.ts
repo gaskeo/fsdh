@@ -1,4 +1,5 @@
-import {checkbox, vectorToValues} from "./ui/checkbox.js";
+import {checkbox} from "./ui/index.js";
+import {vectorToValues} from "./utils/index.js";
 import * as fs from "fs";
 import {createDirs, dirs, selectDir} from "./files/index.js";
 

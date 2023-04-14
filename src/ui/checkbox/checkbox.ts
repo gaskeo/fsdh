@@ -1,14 +1,11 @@
 import ansiEscapes from "ansi-escapes";
+import {underline, whiteAndGreen} from "../../utils/index.js";
 
 const exit = "\x03";
 const upButton = "\u001b[A";
 const downButton = "\u001b[B";
 const space = "\u0020";
 const enter = "\u000d";
-
-function greenBackground(content: string) {
-    return `\x1b[1;42m${content}\x1b[0m`;
-}
 
 interface Checkbox {
     items: string[];
@@ -51,7 +48,7 @@ async function checkbox({
 
             function setSign(index: number, item: string) {
                 let output = selectedItems[index] ? "☑ " : "☐ ";
-                output += index === currentPosition ? `\x1b[4m${item}\x1b[0m` : item;
+                output += index === currentPosition ? underline(item) : item;
                 return output;
             }
 
@@ -64,10 +61,6 @@ async function checkbox({
             }
 
             function prepare() {
-                function whiteAndGreen(data: string) {
-                    return `\x1b[97m\x1b[42m${data}\x1b[0m`;
-                }
-
                 title && process.stdout.write(title + "\n");
                 process.stdout.write(`${whiteAndGreen("↑ or w")} up\t` +
                     `${whiteAndGreen("↓ or s")} down\t` +
@@ -101,17 +94,5 @@ async function checkbox({
     );
 }
 
-interface VectorToValues<T> {
-    vector: number[];
-    data: T[];
-}
 
-function vectorToValues<T>({vector, data}: VectorToValues<T>): T[] {
-    if (vector.length !== data.length) {
-        return [];
-    }
-
-    return data.filter((_, index) => vector[index]);
-}
-
-export {checkbox, vectorToValues};
+export {checkbox};
