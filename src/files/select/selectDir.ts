@@ -1,4 +1,4 @@
-import {input} from "../../ui/input/input.js";
+import {input} from "../../ui/index.js";
 
 async function selectDir() {
     return new Promise<string>((resolve) => {
