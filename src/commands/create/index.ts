@@ -41,7 +41,10 @@ async function generateFiles(path: string, name: string, options: Option[]) {
             generateUI(path, name, options),
             generateStyles(path, name, options),
             generateModel(path, name, options)
-        ]).then(() => resolve(null));
+        ]).then(() => {
+            console.log(`✅ component ${whiteAndGreen(name)} created`);
+            resolve(null);
+        });
     });
 }
 
