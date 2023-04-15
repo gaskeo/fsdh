@@ -1,12 +1,12 @@
 import {checkbox, input} from "../../ui/index.js";
 import {vectorToValues, whiteAndGreen} from "../../utils/index.js";
 import {Option, options} from "./consts.js";
-import {generateIndex, generateUI} from "./generators/index.js";
+import {generateIndex, generateStyles, generateUI} from "./generators/index.js";
 
 async function getComponentPath() {
     return new Promise<{ fullPath: string, name: string }>(resolve => {
         input({
-            title: "🖊️Select path (widgets/name, for example)"
+            title: "📁 Select path (widgets/name, for example)"
         }).then(value => {
             const split = value.replaceAll("\\", "/").split("/");
             const name = split[split.length - 1];
@@ -38,7 +38,8 @@ async function generateFiles(path: string, name: string, options: Option[]) {
     return new Promise((resolve) => {
         Promise.all([
             generateIndex(path, name),
-            generateUI(path, name, options)
+            generateUI(path, name, options),
+            generateStyles(path, name, options)
         ]).then(() => resolve(null));
     });
 }
