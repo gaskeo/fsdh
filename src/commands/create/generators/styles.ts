@@ -4,8 +4,9 @@ import {Option} from "../consts.js";
 
 async function generateStyles(path: string, name: string, options: Option[]) {
     return new Promise((resolve) => {
-        const nameCapitalize = name.charAt(0).toUpperCase() + name.substring(1);
+        if (!options.includes("scss") && !options.includes("css")) return resolve(null);
 
+        const nameCapitalize = name.charAt(0).toUpperCase() + name.substring(1);
 
         const fileContent = readFile({
             path: `${getPath()}/assets/next/componentTemplate/styles/componentTemplate.module.example`

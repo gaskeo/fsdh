@@ -13,7 +13,7 @@ async function generateIndex(path: string, name: string) {
             .replaceAll("{ComponentTemplate}", nameCapitalize);
 
         createFile({
-            path: `${path}/ui/${name}.tsx`, content: content
+            path: `${path}/index.tsx`, content: content
         });
         resolve(null);
     });
