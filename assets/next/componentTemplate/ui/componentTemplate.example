@@ -20,5 +20,7 @@ export default function {ComponentTemplate}({...props}: {ComponentTemplate}Props
         </div>
         <{ComponentTemplate}Styled>
         </{ComponentTemplate}Styled>
+        <div>
+        </div>
     );
 }

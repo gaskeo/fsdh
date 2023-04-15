@@ -4,11 +4,12 @@ import {Option} from "../consts.js";
 
 const lines = {
     // lines from assets/next/componentTemplate/ui/componentTemplate.example
-    default: [5, 6, 7, 8, 9, 14, 18, 23, 24],
-    css: [1, 19, 20],
-    scss: [2, 19, 20],
-    styled: [3, 10, 11, 12, 13, 21, 22],
-    model: [4, 15, 16, 17]
+    default: [6, 7, 8, 9, 14, 18, 25, 26],
+    css: [1, 5, 19, 20],
+    scss: [2, 5, 19, 20],
+    styled: [3, 5, 10, 11, 12, 13, 21, 22],
+    withoutStyles: [23, 24],
+    model: [4, 5, 15, 16, 17]
 };
 
 async function generateUI(path: string, name: string, options: Option[]) {
@@ -26,6 +27,7 @@ async function generateUI(path: string, name: string, options: Option[]) {
         css && needLines.push(...lines.css);
         scss && needLines.push(...lines.scss);
         styled && needLines.push(...lines.styled);
+        !css && !scss && !styled && needLines.push(...lines.withoutStyles);
         model && needLines.push(...lines.model);
 
         const content = fileContent

@@ -4,7 +4,8 @@ import {Option} from "../consts.js";
 
 async function generateStyles(path: string, name: string, options: Option[]) {
     return new Promise((resolve) => {
-        if (!options.includes("scss") && !options.includes("css")) return resolve(null);
+        if ((!options.includes("scss") && !options.includes("css"))
+            || options.includes("styled-components")) return resolve(null);
 
         const nameCapitalize = name.charAt(0).toUpperCase() + name.substring(1);
 
