@@ -1,4 +1,4 @@
-import {init, version} from "./commands/index.js";
+import {create, init, version} from "./commands/index.js";
 
 async function main() {
     const args = process.argv;
@@ -10,6 +10,7 @@ async function main() {
 
     if (["v", "V", "version", "Version", "--version", "-v", "-V"].includes(command)) return version();
     if (command === "init") return init();
+    if (command === "create") return create();
 }
 
 main().catch((reason) => {
