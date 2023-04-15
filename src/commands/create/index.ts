@@ -42,7 +42,7 @@ async function generateFiles(path: string, name: string, options: Option[]) {
             generateStyles(path, name, options),
             generateModel(path, name, options)
         ]).then(() => {
-            console.log(`✅ component ${whiteAndGreen(name)} created`);
+            console.log(`✅  Component ${whiteAndGreen(name)} created`);
             resolve(null);
         });
     });
