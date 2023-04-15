@@ -1,7 +1,7 @@
 import {checkbox, input} from "../../ui/index.js";
 import {vectorToValues, whiteAndGreen} from "../../utils/index.js";
 import {Option, options} from "./consts.js";
-import {generateIndex, generateStyles, generateUI} from "./generators/index.js";
+import {generateIndex, generateModel, generateStyles, generateUI} from "./generators/index.js";
 
 async function getComponentPath() {
     return new Promise<{ fullPath: string, name: string }>(resolve => {
@@ -39,7 +39,8 @@ async function generateFiles(path: string, name: string, options: Option[]) {
         Promise.all([
             generateIndex(path, name),
             generateUI(path, name, options),
-            generateStyles(path, name, options)
+            generateStyles(path, name, options),
+            generateModel(path, name, options)
         ]).then(() => resolve(null));
     });
 }

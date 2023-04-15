@@ -1,0 +1,4 @@
+const {ComponentTemplate}Model =
+    () => ({foo: "bar"});
+
+export default {ComponentTemplate}Model;
