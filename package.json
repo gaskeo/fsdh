@@ -1,6 +1,6 @@
 {
   "name": "fsdh",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "FSD helper",
   "engines": {
     "node": ">=14.16"
@@ -15,7 +15,8 @@
     "package.json",
     "lib",
     "bin",
-    "assets"
+    "assets",
+    "doc"
   ],
   "scripts": {
     "test": "",
@@ -39,9 +40,9 @@
   "author": "gaskeo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gaskeo/fsd-helper/issues"
+    "url": "https://github.com/gaskeo/fsdh/issues"
   },
-  "homepage": "https://github.com/gaskeo/fsd-helper#readme",
+  "homepage": "https://github.com/gaskeo/fsdh#readme",
   "dependencies": {
     "ansi-escapes": "^6.1.0"
   },
