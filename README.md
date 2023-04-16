@@ -8,7 +8,7 @@ Package for Frontend developers who use [FSD architecture](https://feature-slice
 
 You can create folders and example files for your project.
 
-![init.gif](doc/images/overview/init.gif)
+![init.gif](doc/images/overview/init.gif?raw=true)
 
 `fsdh` can create this structure:
 ```
@@ -51,7 +51,7 @@ You can create folders and example files for your project.
 
 You can create slices with this command. 
 
-![create.gif](doc/images/overview/create.gif)
+![create.gif](doc/images/overview/create.gif?raw=true)
 
 This command will create this architecture of slice: 
 
