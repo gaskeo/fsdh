@@ -5,7 +5,7 @@ async function selectDir() {
         const path = process.cwd().replaceAll("\\", "/");
         const dir = path.split("/")[path.split("/").length - 1];
 
-        input({title: `📁 Select directory (${dir})`}).then(selectedDir => {
+        input({title: `+ Select directory (${dir})`}).then(selectedDir => {
             if (selectedDir.trim() === "") {
 
                 resolve(".");

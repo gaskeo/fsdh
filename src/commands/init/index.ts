@@ -5,7 +5,7 @@ import {getPath, vectorToValues} from "../../utils/index.js";
 async function getWorkingDir() {
     return new Promise<string>(function (resolve) {
         selectDir().then(dir => {
-            console.log(`✅  Directory selected: ${dir}\n`);
+            console.log(`✓ Directory selected: ${dir}\n`);
             resolve(dir);
         });
     });
@@ -17,7 +17,7 @@ async function getDirs() {
             items: fsdFolders,
             ctrlCErrorMessage: ":(",
             defaultSelected: true,
-            title: "➕  Select necessary directories"
+            title: "+ Select necessary directories"
         }).then(selectedDirsVector => {
             const selectedDirs = vectorToValues({
                 vector: selectedDirsVector, data: fsdFolders
@@ -34,13 +34,13 @@ async function generateDirs(folders: string[], workingDir: string) {
         }
     );
     const createdDirs = statuses.filter(status => status.created);
-    console.log(`✅  Directory created:\n ${createdDirs.map(d => "\t" + d.dir).join("\n")}\n`);
+    console.log(`✓ Directory created:\n ${createdDirs.map(d => "\t" + d.dir).join("\n")}\n`);
 }
 
 async function getNeedExamples() {
     return new Promise<boolean>((resolve, reject) => {
         radio({
-            title: "🧮 Add example components?",
+            title: "+ Add example components?",
             items: ["Yes", "No"],
             ctrlCErrorMessage: ":("
         }).then(index => resolve(index === 0)).catch(e => reject(e));
@@ -60,7 +60,7 @@ async function addExamples(folders: FsdFolders[], workingDir: string) {
                 });
             }
         });
-        console.log("✅  Examples added");
+        console.log("✓ Examples added");
         resolve(null);
     });
 }

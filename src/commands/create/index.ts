@@ -6,11 +6,11 @@ import {generateIndex, generateModel, generateStyles, generateUI} from "./genera
 async function getComponentPath() {
     return new Promise<{ fullPath: string, name: string }>(resolve => {
         input({
-            title: "📁 Select path (widgets/name, for example)"
+            title: "+ Select path (widgets/name, for example)"
         }).then(value => {
             const split = value.replaceAll("\\", "/").split("/");
             const name = split[split.length - 1];
-            console.log(`✅  Component ${whiteAndGreen(name)} will be created in path ${whiteAndGreen(split.slice(0, split.length - 1).join("/") || ".")}\n`);
+            console.log(`✓ Component ${whiteAndGreen(name)} will be created in path ${whiteAndGreen(split.slice(0, split.length - 1).join("/") || ".")}\n`);
             resolve({fullPath: value, name: name});
         });
     });
@@ -21,7 +21,7 @@ async function getOptions() {
     return new Promise<Option[]>((resolve, reject) => {
         const items: Option[] = options;
         checkbox({
-            title: "📚 Select necessary options:",
+            title: "+ Select necessary options:",
             items: items,
             defaultSelected: [1, 0, 0, 1, 0],
             ctrlCErrorMessage: ":("
@@ -42,7 +42,7 @@ async function generateFiles(path: string, name: string, options: Option[]) {
             generateStyles(path, name, options),
             generateModel(path, name, options)
         ]).then(() => {
-            console.log(`✅  Component ${whiteAndGreen(name)} created`);
+            console.log(`✓ Component ${whiteAndGreen(name)} created`);
             resolve(null);
         });
     });
