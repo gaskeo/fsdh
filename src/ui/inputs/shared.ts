@@ -35,4 +35,4 @@ export const buttons = {
     downButton: "\u001b[B",
     space: "\u0020",
     enter: "\u000d"
-}
+};
