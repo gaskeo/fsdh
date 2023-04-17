@@ -10,7 +10,6 @@ async function getComponentPath() {
         }).then(value => {
             const split = value.replaceAll("\\", "/").split("/");
             const name = split[split.length - 1];
-            console.log(`✓ Component ${whiteAndGreen(name)} will be created in path ${whiteAndGreen(split.slice(0, split.length - 1).join("/") || ".")}\n`);
             resolve({fullPath: value, name: name});
         });
     });
@@ -33,7 +32,6 @@ async function getOptions() {
 }
 
 
-
 async function generateFiles(path: string, name: string, options: Option[]) {
     return new Promise((resolve) => {
         Promise.all([
@@ -48,8 +46,60 @@ async function generateFiles(path: string, name: string, options: Option[]) {
     });
 }
 
+interface NameArg {
+    name: string;
+    fullPath: string;
+}
+
+interface OptionsArg {
+    model: boolean;
+    css: boolean;
+    styled: boolean;
+    scss: boolean;
+}
+
+interface CreateArg {
+    nameProvided: boolean;
+    name?: NameArg;
+    optionsProvided: boolean;
+    options?: OptionsArg;
+}
+
+function getParams(): CreateArg {
+    const args = process.argv;
+    if (args.length <= 3) {
+        return {nameProvided: false, optionsProvided: false};
+    }
+
+    if (args.length === 4) {
+        const split = args[3].replaceAll("\\", "/").split("/");
+        const name = split[split.length - 1];
+        return {
+            nameProvided: true,
+            name: {
+                name: name,
+                fullPath: args[3]
+            },
+            optionsProvided: false
+        };
+    }
+    return {nameProvided: false, optionsProvided: false};
+}
+
 async function create() {
-    const {name, fullPath} = await getComponentPath();
+    const params = getParams();
+    let name, fullPath;
+
+    if (params.nameProvided && params.name) {
+        ({name, fullPath} = params.name);
+    } else {
+        ({name, fullPath} = await getComponentPath());
+    }
+    console.log(`✓ Component ${whiteAndGreen(name)} ` +
+        "will be created in path " +
+        `${whiteAndGreen(fullPath.split("/").slice(0, fullPath.split("/").length - 1).join("/") || ".")}\n`
+    );
+
     const options = await getOptions();
     await generateFiles(fullPath, name, options);
 }
