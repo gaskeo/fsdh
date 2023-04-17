@@ -49,7 +49,7 @@ You can create folders and example files for your project.
 
 ### `fsdh create`
 
-You can create slices with this command. 
+You can create **slices** with this command. 
 
 ![create.gif](doc/images/overview/create.gif?raw=true)
 
@@ -60,12 +60,34 @@ This command will create this architecture of slice:
 * `model/{name}.ts` - has empty model function
 * `styles/{name}.module.[s]css` - has empty root class for your component
 
-If you select `css/scss/styled-components` option, `fsdh` generate slice only with one of them. Priority of this options: 
+If you select `css/scss/styled-components` option, `fsdh` generate slice only with one of them. Priority of these options: 
 1. `styled-components`
 2. `scss`
 3. `css`
 
-For example, if you select `styled-components` and `scss`, `fsdh` will generate slice with `styled-components`
+For example, if you select `styled-components` and `scss`, `fsdh` will generate slice with `styled-components`.
+
+#### Params
+
+You can create slice in non-interactive mode:
+
+```
+fsdh create {path} {options}
+```
+
+Options: 
+* `m`: add `model`
+* `sc`: add `styled-components`
+* `s`: add `scss`
+* `c` add `css`
+
+> `cs` option create slice with `scss` because of priority of styling options.
+
+For example, this command create slice `myWidget` in path `widgets/` with `model` and `styled-components`: 
+
+```
+fsdh create widgets/myWidget msc
+```
 
 ## Installation 
 
