@@ -1,5 +1,5 @@
-import {checkbox} from "./checkbox/checkbox.js";
-import {input} from "./input/input.js";
-import {radio} from "./radio/radio.js";
+import {checkbox} from "./inputs/checkbox/checkbox.js";
+import {input} from "./inputs/input/input.js";
+import {radio} from "./inputs/radio/radio.js";
 
 export {checkbox, input, radio};

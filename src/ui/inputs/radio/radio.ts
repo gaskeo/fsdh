@@ -1,5 +1,5 @@
 import ansiEscapes from "ansi-escapes";
-import {underline, whiteAndGreen} from "../../utils/index.js";
+import {underline, whiteAndGreen} from "../../../utils/index.js";
 
 const exit = "\x03";
 const upButton = "\u001b[A";
@@ -68,10 +68,10 @@ async function radio({
                 process.stdin.resume();
 
                 title && process.stdout.write(title + "\n");
-                process.stdout.write(`${whiteAndGreen("↑ or w")} up\t` +
-                    `${whiteAndGreen("↓ or s")} down\t` +
-                    `${whiteAndGreen("space")} toggle\t` +
-                    `${whiteAndGreen("enter")} apply\n`);
+                process.stdout.write(`${whiteAndGreen("↑ or W")} up\t` +
+                    `${whiteAndGreen("↓ or S")} down\t` +
+                    `${whiteAndGreen("Space")} toggle\t` +
+                    `${whiteAndGreen("Enter")} apply\n`);
                 process.stdout.write(ansiEscapes.cursorHide);
                 process.stdin.on("data", listener);
             }
