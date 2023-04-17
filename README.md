@@ -91,8 +91,28 @@ fsdh create widgets/myWidget msc
 
 ## Installation 
 
-Use a npm package manager: 
+### NPM
+
+Use a npm package manager:
 
 ```
 npm i --global fsdh
 ```
+
+### Source
+
+You can build `fsdh` from sources: 
+
+```
+git clone https://github.com/gaskeo/fsdh
+cd fsdh
+npm install 
+npm build
+```
+
+After this commands you can run `fsdh`: 
+
+```
+npm start [init | create]
+```
+
