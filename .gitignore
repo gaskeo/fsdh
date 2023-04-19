@@ -2,3 +2,5 @@ node_modules
 lib
 bin
 coverage
+
+src/__tests__/.files
