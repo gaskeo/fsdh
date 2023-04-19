@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "target": "es5",
-//    "module": "commonjs",
     "declaration": true,
     "outDir": "./lib",
     "strict": true,
     "moduleResolution": "node16",
     "esModuleInterop": true,
     "module": "es6",
-    "lib": ["DOM", "ES2021"]
+    "lib": ["DOM", "ES2021"],
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "module": "node16",
   "moduleResolution": "node16",
