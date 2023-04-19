@@ -1,5 +1,5 @@
 import {describe, expect, test, beforeEach, afterEach} from "@jest/globals";
-import {copy, readFile} from "../../files";
+import {copy, readFile} from "../../../files";
 import * as fs from "fs";
 
 describe("copy", () => {
@@ -9,7 +9,7 @@ describe("copy", () => {
         const source = readFile({path: "package.json"});
         const copied = readFile({path: "src/__tests__/.files/test.package.json"});
         expect(source
-            ).toEqual(copied);
+        ).toEqual(copied);
     });
 
     test("copy file in new dir", () => {
