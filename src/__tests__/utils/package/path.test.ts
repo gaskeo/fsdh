@@ -1,5 +1,5 @@
 import {describe, test, expect} from "@jest/globals";
-import {getPath} from "../../../src/utils";
+import {getPath} from "../../../utils";
 
 describe("path", () => {
     test("global path in windows", () => {

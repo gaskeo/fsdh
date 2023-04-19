@@ -1,4 +1,4 @@
-import {Option} from "./consts.js";
+import {Option} from "./consts";
 
 interface NameArg {
     name: string;
@@ -19,7 +19,7 @@ export function getParams(): CreateArg {
     }
 
     if (args.length >= 4) {
-        const split = args[3].replaceAll("\\", "/").split("/");
+        const split = args[3].replace(/\\/g, "/").split("/");
         const name = split[split.length - 1];
         if (args.length === 4) {
             return {

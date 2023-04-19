@@ -1,6 +1,7 @@
-import {createFile, readFile} from "../../../files/index.js";
-import {getPath} from "../../../utils/index.js";
-import {Option} from "../consts.js";
+import {createFile, readFile} from "../../../files/index";
+import {getPath} from "../../../utils/index";
+import {Option} from "../consts";
+import process from "process";
 
 const lines = {
     // lines from assets/next/componentTemplate/ui/componentTemplate.example
@@ -16,7 +17,7 @@ async function generateUI(path: string, name: string, options: Option[]) {
     return new Promise((resolve) => {
         const nameCapitalize = name.charAt(0).toUpperCase() + name.substring(1);
         const fileContent = readFile({
-            path: `${getPath()}/assets/next/componentTemplate/ui/componentTemplate.example`
+            path: `${getPath(process.argv[1])}/assets/next/componentTemplate/ui/componentTemplate.example`
         });
         const needLines = lines.default;
         const css = options.includes("css") && !options.includes("scss") && !options.includes("styled-components");
@@ -34,8 +35,8 @@ async function generateUI(path: string, name: string, options: Option[]) {
             .split("\n")
             .filter((_, index) => needLines.includes(index + 1))
             .join("\n")
-            .replaceAll("{componentTemplate}", name)
-            .replaceAll("{ComponentTemplate}", nameCapitalize);
+            .replace(/{componentTemplate}/g, name)
+            .replace(/{ComponentTemplate}/g, nameCapitalize);
 
         createFile({
             path: `${path}/ui/${name}.tsx`, content: content

@@ -1,6 +1,6 @@
-import {copy, createDirs, examplePaths, fsdFolders, FsdFolders, selectDir} from "../../files/index.js";
-import {checkbox, radio} from "../../ui/index.js";
-import {getPath, vectorToValues} from "../../utils/index.js";
+import {copy, createDirs, examplePaths, fsdFolders, FsdFolders, selectDir} from "../../files/index";
+import {checkbox, radio} from "../../ui/index";
+import {getPath, vectorToValues} from "../../utils/index";
 
 async function getWorkingDir() {
     return new Promise<string>(function (resolve) {

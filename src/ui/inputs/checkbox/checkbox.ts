@@ -1,5 +1,5 @@
-import {underline} from "../../../utils/index.js";
-import {after, buttons, clean, prepare, render} from "../shared.js";
+import {underline} from "../../../utils/index";
+import {after, buttons, clean, prepare, render} from "../shared";
 
 interface Checkbox {
     items: string[];

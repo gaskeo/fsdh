@@ -1,5 +1,5 @@
 import {describe, expect, test} from "@jest/globals";
-import {whiteAndGreen, underline} from "../../../src/utils";
+import {whiteAndGreen, underline} from "../../../utils";
 
 describe("styles", () => {
     test("white and green text", () => {

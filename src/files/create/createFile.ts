@@ -1,5 +1,5 @@
 import fs from "fs";
-import {createDir} from "./createDir.js";
+import {createDir} from "./createDir";
 
 interface CreateFile {
     path: string

@@ -1,5 +1,5 @@
 import {describe, expect, test} from "@jest/globals";
-import {vectorToValues} from "../../../src/utils";
+import {vectorToValues} from "../../../utils";
 
 
 describe("vectorToValues", () => {
