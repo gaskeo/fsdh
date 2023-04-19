@@ -50,7 +50,7 @@ async function getNeedExamples() {
 
 async function addExamples(folders: FsdFolders[], workingDir: string) {
     return new Promise((resolve) => {
-        const packagePath = getPath();
+        const packagePath = getPath(process.argv[1]);
         folders.map(folder => {
             if (examplePaths.next[folder] !== undefined) {
                 copy({

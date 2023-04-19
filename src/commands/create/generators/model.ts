@@ -9,7 +9,7 @@ async function generateModel(path: string, name: string, options: Option[]) {
         const nameCapitalize = name.charAt(0).toUpperCase() + name.substring(1);
 
         const fileContent = readFile({
-            path: `${getPath()}/assets/next/componentTemplate/model/componentTemplate.example`
+            path: `${getPath(process.argv[1])}/assets/next/componentTemplate/model/componentTemplate.example`
         });
 
         const content = fileContent
