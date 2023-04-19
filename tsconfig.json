@@ -1,14 +1,11 @@
 {
   "compilerOptions": {
-    "incremental": true,
-    "target": "es6",
-    "module": "commonjs",
+    "target": "es5",
+    "module": "es6",
     "lib": ["es2020"],
-    "outDir": "lib",
+    "outDir": "./lib",
     "rootDir": "src",
     "removeComments": true,
-    "noEmit": true,
-    "importHelpers": true,
     "downlevelIteration": true,
     "isolatedModules": true,
     "strict": true,
@@ -41,8 +38,20 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
+
+
+  "module": "node16",
+  "moduleResolution": "node16",
+  "moduleDetection": "force",
+  "target": "ES2021",
+  "lib": [
+    "DOM",
+    "DOM.Iterable",
+    "ES2021"
+  ],
+
   "include": [
-    "src"
+    "./src"
   ],
   "exclude": [
     "node_modules",

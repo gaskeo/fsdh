@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=14.16"
   },
+  "type": "module",
   "bin": {
     "fsdh": "./bin/entry.js"
   },
@@ -19,7 +20,7 @@
   ],
   "scripts": {
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx jest --silent",
-    "build": "tsc",
+    "build": "tsc-esm",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/eslint-parser": "^7.21.3",
+    "@digitak/tsc-esm": "^3.1.4",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
