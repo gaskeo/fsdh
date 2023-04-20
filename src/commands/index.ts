@@ -1,5 +1,5 @@
-import {init} from "./init/index";
-import {version} from "./version/index";
-import {create} from "./create/index";
+import {init} from "./init";
+import {version} from "./version";
+import {create} from "./create";
 
 export {init, version, create};

@@ -1,4 +1,4 @@
-import {create, init, version} from "./commands/index";
+import {create, init, version} from "./commands";
 
 async function main() {
     const args = process.argv;
