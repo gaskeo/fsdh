@@ -73,7 +73,8 @@
     "testRegex": "__tests__[\\/a-zA-Z\\.]*test\\.ts",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.ts"
+      "src/**/*.ts",
+      "!src/__tests__/**/*.ts"
     ],
     "coverageThreshold": {
       "global": {
