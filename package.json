@@ -70,6 +70,7 @@
     "typescript": "^5.0.4"
   },
   "jest": {
+    "testRegex": "__tests__[\\/a-zA-Z\\.]*test\\.ts",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.ts"

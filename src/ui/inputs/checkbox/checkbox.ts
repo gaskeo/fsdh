@@ -17,6 +17,7 @@ async function checkbox({
                             ctrlCErrorMessage
                         }: Checkbox) {
     return new Promise<number[]>((resolve, reject) => {
+            clean(3);
             const listener = (buffer: Buffer) => buttonHandler(buffer.toString());
 
             function buttonHandler(button: string) {

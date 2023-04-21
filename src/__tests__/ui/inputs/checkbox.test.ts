@@ -1,51 +1,13 @@
 import {describe, expect, test, jest, afterEach} from "@jest/globals";
 import {checkbox} from "../../../ui";
 import {buttons} from "../../../ui/inputs/shared";
-import * as process from "process";
+import {generateStdin} from "./shared";
 
 jest.useFakeTimers();
 
-jest.mock("../../../ui/inputs/shared", () => {
-    const originalModule: any = jest.requireActual("../../../ui/inputs/shared");
-
-    return {
-        __esModule: true,
-        ...originalModule,
-        clean: () => undefined
-    };
-});
-
-
-jest.spyOn(process.stdout, 'write').mockImplementation(() => true);
-
-jest.spyOn(process.stdin, 'setRawMode').mockImplementation(() => ({
-    resume: () => ({} as typeof process.stdin)
-} as typeof process.stdin));
-
-jest.spyOn(process.stdin, "resume").mockImplementation(() => ({} as typeof process.stdin));
-
-type ValueOf<T> = T[keyof T]
-
-function generateStdin(pressedButtons: ValueOf<typeof buttons>[]) {
-    return jest.spyOn(process.stdin, 'on').mockImplementation(
-        (type: string, listener: (data: Buffer) => void): (typeof process.stdin) => {
-            if (type !== "data") {
-                return {} as typeof process.stdin;
-            }
-            pressedButtons.map((button) => {
-                listener({
-                    toString: () => button
-                } as Buffer);
-            });
-            return {} as typeof process.stdin;
-        });
-}
-
-jest.spyOn(process.stdout, 'write').mockImplementation(() => true);
-
-
 describe("checkbox", () => {
-    let spyStdin: jest.SpiedFunction<{(event: "timeout", listener: (...args: any[]) => void): (NodeJS.ReadStream & {fd: 0})}>;
+    let spyStdin: jest.SpiedFunction<{(event: "timeout", listener: (...args: string[]) => void): (NodeJS.ReadStream & {fd: 0})}>;
+
     test("one option", async () => {
         spyStdin = generateStdin([buttons.enter]);
         const selected = await checkbox({items: ["item1"]});
