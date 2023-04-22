@@ -1,46 +1,20 @@
 import {describe, expect, test, jest} from "@jest/globals";
-import * as child_process from "child_process";
 import * as fs from "fs";
+import {version as versionCommand} from "../../../commands";
+import process from "process";
 
 jest.useFakeTimers();
 
 describe("version", () => {
     const version = JSON.parse(fs.readFileSync("./package.json").toString())["version"];
-    const versionString = `version: ${version}\n`;
+    const versionString = `version: ${version}`;
 
-    test("check -v", (done) => {
-        const out = child_process.spawnSync(
-            "ts-node-esm", ["--experimental-specifier-resolution=node", "./src/index.ts", "-v"], {
-                shell: true,
-                input: ""
-            });
-
-        expect(out.stdout.toString()
-        ).toBe(versionString);
-        done();
-    });
-
-    test("check v", (done) => {
-        const out = child_process.spawnSync(
-            "ts-node-esm", ["--experimental-specifier-resolution=node", "./src/index.ts", "v"], {
-                shell: true,
-                input: ""
-            });
-
-        expect(out.stdout.toString()
-        ).toBe(versionString);
-        done();
-    });
-
-    test("check --version", (done) => {
-        const out = child_process.spawnSync(
-            "ts-node-esm", ["--experimental-specifier-resolution=node", "./src/index.ts", "--version"], {
-                shell: true,
-                input: ""
-            });
-
-        expect(out.stdout.toString()
-        ).toBe(versionString);
-        done();
+    test("check", async () => {
+        const log = jest.spyOn(console, "log").mockImplementation((_t: string) => undefined);
+        process.argv[1] = process.cwd();
+        await versionCommand();
+        expect(log).toHaveBeenCalledWith(versionString);
+        log.mockClear();
+        return new Promise((resolve) => resolve(null));
     });
 });

@@ -1,39 +1,13 @@
 import {afterEach, describe, expect, jest, test} from "@jest/globals";
 import {input} from "../../../ui";
 import readline from "readline";
+import {generateReadline} from "./readline.mock";
 
 jest.useFakeTimers();
 
-function generateReadline(onQuestion: string, close?: undefined | true) {
-    const spyReadline = jest.spyOn(readline, "createInterface").mockImplementation(
-        (options: readline.ReadLineOptions): readline.Interface => {
-            return {
-                options,
-                on: (event: string, listener: () => void): readline.Interface => {
-                    if (event === "close" && close) {
-                        listener();
-                    }
-                    return {} as readline.Interface;
-                },
-                question: (_query: string, callback: (answer: string) => void) => {
-                    callback(onQuestion);
-                }
-            } as unknown as readline.Interface;
-        }
-    );
-    return {spy: spyReadline};
-}
-
 describe("input", () => {
-    let spyReadline: jest.SpiedFunction<(...args: Parameters<{
-        (input: NodeJS.ReadableStream, output?: NodeJS.WritableStream, completer?:
-            (readline.Completer | readline.AsyncCompleter), terminal?: boolean): readline.Interface;
-        (options: readline.ReadLineOptions): readline.Interface
-    }>) => ReturnType<{
-        (input: NodeJS.ReadableStream, output?: NodeJS.WritableStream, completer?:
-            (readline.Completer | readline.AsyncCompleter), terminal?: boolean): readline.Interface;
-        (options: readline.ReadLineOptions): readline.Interface
-    }>>;
+    let spyReadline: jest.SpiedFunction<(...args: Parameters<readline.Interface>) =>
+        ReturnType<{ (options: readline.ReadLineOptions): readline.Interface }>>;
 
     test("none", async () => {
         const generatedSpy = generateReadline("");
