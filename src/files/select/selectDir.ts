@@ -10,9 +10,8 @@ async function selectDir() {
 
                 resolve(".");
             }
-            resolve(selectedDir);
-        })
-            .catch(e => reject(e));
+            resolve(selectedDir.replace(/\\/g, "/"));
+        }).catch(e => reject(e));
     });
 }
 
