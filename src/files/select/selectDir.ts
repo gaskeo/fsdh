@@ -1,7 +1,7 @@
 import {input} from "../../ui/index";
 
 async function selectDir() {
-    return new Promise<string>((resolve) => {
+    return new Promise<string>((resolve, reject) => {
         const path = process.cwd().replace(/\\/g, "/");
         const dir = path.split("/")[path.split("/").length - 1];
 
@@ -11,7 +11,8 @@ async function selectDir() {
                 resolve(".");
             }
             resolve(selectedDir);
-        });
+        })
+            .catch(e => reject(e));
     });
 }
 

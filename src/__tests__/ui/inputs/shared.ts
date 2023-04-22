@@ -14,13 +14,13 @@ jest.spyOn(process.stdout, 'write').mockImplementation(() => true);
 
 type ValueOf<T> = T[keyof T]
 
-export function generateStdin(pressedButtons: ValueOf<typeof buttons>[]) {
+export function generateStdin(content: (ValueOf<typeof buttons> | string)[]) {
     return jest.spyOn(process.stdin, 'on').mockImplementation(
         (type: string, listener: (data: Buffer) => void): (typeof process.stdin) => {
             if (type !== "data") {
                 return {} as typeof process.stdin;
             }
-            pressedButtons.map((button) => {
+            content.map((button) => {
                 listener({
                     toString: () => button
                 } as Buffer);

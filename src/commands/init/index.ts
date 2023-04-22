@@ -3,11 +3,12 @@ import {checkbox, radio} from "../../ui/index";
 import {getPath, vectorToValues} from "../../utils/index";
 
 async function getWorkingDir() {
-    return new Promise<string>(function (resolve) {
+    return new Promise<string>(function (resolve, reject) {
         selectDir().then(dir => {
             console.log(`✓ Directory selected: ${dir}\n`);
             resolve(dir);
-        });
+        })
+            .catch(e => reject(e));
     });
 }
 
