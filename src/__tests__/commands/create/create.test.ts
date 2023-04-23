@@ -6,8 +6,6 @@ import {buttons} from "../../../ui/inputs/shared";
 import {generateStdin} from "../../ui/inputs/shared.mock";
 import process from "process";
 import fs from "fs";
-// import * as console from "console";
-// import fs from "fs";
 
 jest.useFakeTimers();
 
