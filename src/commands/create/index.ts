@@ -49,7 +49,7 @@ async function generateFiles(path: string, name: string, options: Option[]) {
 
 async function create() {
     const params = getParams();
-    let name, fullPath, options;
+    let name: string, fullPath: string, options: Option[] | number[];
 
     if (params.nameProvided && params.name) {
         ({name, fullPath} = params.name);
