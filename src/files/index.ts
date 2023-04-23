@@ -1,4 +1,4 @@
-import {fsdFolders, FsdFolders, examplePaths} from "./consts";
+import {fsdFolders, FsdFolders, exampleSrcPaths} from "./consts";
 import {selectDir} from "./select/selectDir";
 import {createDirs} from "./create/createDirs";
 import {createDir} from "./create/createDir";
@@ -9,7 +9,7 @@ import {readFile} from "./read/readFile";
 export {
     fsdFolders,
 
-    examplePaths,
+    exampleSrcPaths,
     selectDir,
     createDirs,
     createDir,

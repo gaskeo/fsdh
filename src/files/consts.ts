@@ -10,7 +10,7 @@ const fsdFolders: FsdFolders[] = [
     "shared"
 ];
 
-const examplePaths: {next: {[folder in FsdFolders]: string}} = {
+const exampleSrcPaths: {next: {[folder in FsdFolders]: string}} = {
     next: {
         "shared": "assets/next/exampleShared",
         "entities": "assets/next/exampleEntity",
@@ -22,5 +22,18 @@ const examplePaths: {next: {[folder in FsdFolders]: string}} = {
     }
 };
 
-export {fsdFolders, examplePaths};
+const exampleDestPaths: {next: {[folder in FsdFolders]: string}} = {
+    next: {
+        "shared": "shared",
+        "entities": "entities/exampleEntity",
+        "features": "features/exampleFeature",
+        "widgets": "widgets/exampleWidget",
+        "layouts": "layouts/exampleLayout",
+        "pages": "pages/examplePage",
+        "app": "app",
+    }
+};
+
+
+export {fsdFolders, exampleSrcPaths, exampleDestPaths};
 export type {FsdFolders};
