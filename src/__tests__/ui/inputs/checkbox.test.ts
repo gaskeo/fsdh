@@ -1,7 +1,7 @@
 import {describe, expect, test, jest, afterEach} from "@jest/globals";
 import {checkbox} from "../../../ui";
 import {buttons} from "../../../ui/inputs/shared";
-import {generateStdin} from "./shared";
+import {generateStdin} from "./shared.mock";
 
 jest.useFakeTimers();
 

@@ -1,5 +1,5 @@
 import {afterEach, describe, expect, jest, test} from "@jest/globals";
-import {generateStdin} from "./shared";
+import {generateStdin} from "./shared.mock";
 import {buttons} from "../../../ui/inputs/shared";
 import {radio} from "../../../ui";
 

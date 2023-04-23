@@ -6,8 +6,12 @@ import {generateReadline} from "./readline.mock";
 jest.useFakeTimers();
 
 describe("input", () => {
-    let spyReadline: jest.SpiedFunction<(...args: Parameters<readline.Interface>) =>
-        ReturnType<{ (options: readline.ReadLineOptions): readline.Interface }>>;
+    let spyReadline: jest.SpiedFunction<{
+        (input: NodeJS.ReadableStream,
+         output?: NodeJS.WritableStream | undefined,
+         completer?: readline.Completer | readline.AsyncCompleter | undefined,
+         terminal?: boolean | undefined):
+            readline.Interface; (options: readline.ReadLineOptions): readline.Interface; }>;
 
     test("none", async () => {
         const generatedSpy = generateReadline("");
