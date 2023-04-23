@@ -1,5 +1,5 @@
 import fs from "fs";
-import {createDir} from "./createDir.js";
+import {createDir} from "./createDir";
 
 interface CreateFile {
     path: string
@@ -7,9 +7,17 @@ interface CreateFile {
 }
 
 function createFile({path, content}: CreateFile) {
-    const dir = path.split("/").slice(0, path.split("/").length - 1).join("/");
+    const formattedPath = path
+        .split("/")
+        .filter(p => p)
+        .join("/");
+    const dir = formattedPath
+        .split("/")
+        .slice(0, formattedPath.split("/").length - 1)
+        .join("/");
+
     createDir({dir: dir});
-    fs.writeFileSync(path, content);
+    fs.writeFileSync(formattedPath, content);
 }
 
 export {createFile};

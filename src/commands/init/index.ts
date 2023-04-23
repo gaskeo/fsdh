@@ -1,13 +1,15 @@
-import {copy, createDirs, examplePaths, fsdFolders, FsdFolders, selectDir} from "../../files/index.js";
-import {checkbox, radio} from "../../ui/index.js";
-import {getPath, vectorToValues} from "../../utils/index.js";
+import {copy, createDirs, exampleSrcPaths, fsdFolders, FsdFolders, selectDir} from "../../files/index";
+import {checkbox, radio} from "../../ui/index";
+import {getPath, vectorToValues} from "../../utils/index";
+import {exampleDestPaths} from "../../files/consts";
 
 async function getWorkingDir() {
-    return new Promise<string>(function (resolve) {
+    return new Promise<string>(function (resolve, reject) {
         selectDir().then(dir => {
             console.log(`✓ Directory selected: ${dir}\n`);
             resolve(dir);
-        });
+        })
+            .catch(e => reject(e));
     });
 }
 
@@ -50,12 +52,12 @@ async function getNeedExamples() {
 
 async function addExamples(folders: FsdFolders[], workingDir: string) {
     return new Promise((resolve) => {
-        const packagePath = getPath();
+        const packagePath = getPath(process.argv[1]);
         folders.map(folder => {
-            if (examplePaths.next[folder] !== undefined) {
+            if (exampleSrcPaths.next[folder] !== undefined) {
                 copy({
-                    src: `${packagePath}/${examplePaths.next[folder]}`,
-                    dest: `${workingDir}/${folder}`,
+                    src: `${packagePath}/${exampleSrcPaths.next[folder]}`,
+                    dest: `${workingDir}/${exampleDestPaths.next[folder]}`,
                     recursive: true
                 });
             }

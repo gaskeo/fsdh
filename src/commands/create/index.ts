@@ -1,15 +1,15 @@
-import {checkbox, input} from "../../ui/index.js";
-import {vectorToValues, whiteAndGreen} from "../../utils/index.js";
-import {Option, options} from "./consts.js";
-import {generateIndex, generateModel, generateStyles, generateUI} from "./generators/index.js";
-import {getParams} from "./args.js";
+import {checkbox, input} from "../../ui/index";
+import {vectorToValues, whiteAndGreen} from "../../utils/index";
+import {Option, options} from "./consts";
+import {generateIndex, generateModel, generateStyles, generateUI} from "./generators/index";
+import {getParams} from "./args";
 
 async function getComponentPath() {
     return new Promise<{ fullPath: string, name: string }>(resolve => {
         input({
             title: "+ Select path (widgets/name, for example)"
         }).then(value => {
-            const split = value.replaceAll("\\", "/").split("/");
+            const split = value.replace(/\\/g, "/").split("/");
             const name = split[split.length - 1];
             resolve({fullPath: value, name: name});
         });
@@ -49,7 +49,7 @@ async function generateFiles(path: string, name: string, options: Option[]) {
 
 async function create() {
     const params = getParams();
-    let name, fullPath, options;
+    let name: string, fullPath: string, options: Option[] | number[];
 
     if (params.nameProvided && params.name) {
         ({name, fullPath} = params.name);

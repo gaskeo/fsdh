@@ -1,5 +1,5 @@
-import {init} from "./init/index.js";
-import {version} from "./version/index.js";
-import {create} from "./create/index.js";
+import {init} from "./init";
+import {version} from "./version";
+import {create} from "./create";
 
 export {init, version, create};

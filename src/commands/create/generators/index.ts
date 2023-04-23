@@ -1,6 +1,6 @@
-import {generateUI} from "./ui.js";
-import {generateIndex} from "./indexFile.js";
-import {generateStyles} from "./styles.js";
-import {generateModel} from "./model.js";
+import {generateUI} from "./ui";
+import {generateIndex} from "./indexFile";
+import {generateStyles} from "./styles";
+import {generateModel} from "./model";
 
 export {generateIndex, generateUI, generateStyles, generateModel};

@@ -1,8 +1,8 @@
-import {input} from "../../ui/index.js";
+import {input} from "../../ui/index";
 
 async function selectDir() {
-    return new Promise<string>((resolve) => {
-        const path = process.cwd().replaceAll("\\", "/");
+    return new Promise<string>((resolve, reject) => {
+        const path = process.cwd().replace(/\\/g, "/");
         const dir = path.split("/")[path.split("/").length - 1];
 
         input({title: `+ Select directory (${dir})`}).then(selectedDir => {
@@ -10,8 +10,8 @@ async function selectDir() {
 
                 resolve(".");
             }
-            resolve(selectedDir);
-        });
+            resolve(selectedDir.replace(/\\/g, "/"));
+        }).catch(e => reject(e));
     });
 }
 

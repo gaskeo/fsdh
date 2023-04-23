@@ -1,5 +1,5 @@
-import {underline} from "../../../utils/index.js";
-import {after, buttons, clean, prepare, render} from "../shared.js";
+import {underline} from "../../../utils/index";
+import {after, buttons, clean, prepare, render} from "../shared";
 
 interface Checkbox {
     items: string[];
@@ -17,6 +17,7 @@ async function checkbox({
                             ctrlCErrorMessage
                         }: Checkbox) {
     return new Promise<number[]>((resolve, reject) => {
+            clean(3);
             const listener = (buffer: Buffer) => buttonHandler(buffer.toString());
 
             function buttonHandler(button: string) {

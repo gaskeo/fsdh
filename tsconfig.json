@@ -1,15 +1,45 @@
 {
   "compilerOptions": {
     "target": "es5",
-//    "module": "commonjs",
-    "declaration": true,
-    "outDir": "./lib",
-    "strict": true,
-    "moduleResolution": "node16",
-    "esModuleInterop": true,
     "module": "es6",
-    "lib": ["DOM", "ES2021"]
+    "lib": ["es2020"],
+    "outDir": "./lib",
+    "rootDir": "src",
+    "removeComments": true,
+    "downlevelIteration": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "types": [
+      "node"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "preserveSymlinks": true,
+    "allowUmdGlobalAccess": true,
+    "sourceRoot": "",
+    "mapRoot": "",
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
+
+
   "module": "node16",
   "moduleResolution": "node16",
   "moduleDetection": "force",
@@ -19,8 +49,12 @@
     "DOM.Iterable",
     "ES2021"
   ],
-  "allowSyntheticDefaultImports": true,
-  "resolveJsonModule": false,
-  "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*"
+  ]
 }

@@ -1,5 +1,5 @@
-import {vectorToValues} from "./dataFormatting/vectorToValues.js";
-import {whiteAndGreen, underline} from "./dataFormatting/styles.js";
-import {getPath} from "./package/path.js";
+import {vectorToValues} from "./dataFormatting/vectorToValues";
+import {whiteAndGreen, underline} from "./dataFormatting/styles";
+import {getPath} from "./package/path";
 
 export {vectorToValues, whiteAndGreen, underline, getPath};

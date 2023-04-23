@@ -1,4 +1,4 @@
-import {createDir} from "./createDir.js";
+import {createDir} from "./createDir";
 
 interface CreateDirs {
     dirs: string[];

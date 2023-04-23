@@ -1,5 +1,6 @@
 import ansiEscapes from "ansi-escapes";
-import {whiteAndGreen} from "../../utils/index.js";
+
+import {whiteAndGreen} from "../../utils/index";
 
 export function render(items: string[], setSign: (index: number, item: string) => string) {
     process.stdout.write((
