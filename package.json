@@ -1,6 +1,6 @@
 {
   "name": "fsdh",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "FSD helper",
   "engines": {
     "node": ">=14.16"
